@@ -1,0 +1,20 @@
+meta {
+  name: Get All Pending Agents
+  type: http
+  seq: 6
+}
+
+get {
+  url: http://localhost:5000/api/v1/user/all-users
+  body: text
+  auth: inherit
+}
+
+headers {
+  Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGZiZDIwZDcxNjFjNTA2Mjg1MTY1NjkiLCJwaG9uZSI6IjAxNzEyMzQ1Njc4Iiwicm9sZSI6InN1cGVyX2FkbWluIiwiaWF0IjoxNzYxMzM0MTQ1LCJleHAiOjE3NjE0MjA1NDV9.y_wWwLki0MKDFt8IU4DSjEmu2D3y0PSHFTN6ohP8XkA
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

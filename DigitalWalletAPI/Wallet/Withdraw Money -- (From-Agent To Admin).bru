@@ -1,0 +1,27 @@
+meta {
+  name: Withdraw Money -> (From-Agent To Admin)
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:5000/api/v1/wallet/add-money
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGZjODM0ZGNlYzQ5NGNkNGIyNjNlNjgiLCJwaG9uZSI6IjAxNzEyMzQ1Njc4Iiwicm9sZSI6InN1cGVyX2FkbWluIiwiaWF0IjoxNzYxMzg0ODA1LCJleHAiOjE3NjE0NzEyMDV9.O0cIkWqsBKUDo5uuThe9GwEC9e1_Kq9jnRSNNL-MoyE
+}
+
+body:json {
+  {
+    "agentWalletId": "68fc8370cec494cd4b263e6e",
+    "amount": 1000
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

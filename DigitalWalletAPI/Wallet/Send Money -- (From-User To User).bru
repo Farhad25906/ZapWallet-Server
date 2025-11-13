@@ -1,0 +1,27 @@
+meta {
+  name: Send Money -> (From-User To User)
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://localhost:5000/api/v1/wallet/add-money
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGZjOWUyMjkyZDhlY2YwOWU2MTQzNmIiLCJwaG9uZSI6IjAxNzEyMzQ1Njc4Iiwicm9sZSI6InN1cGVyX2FkbWluIiwiaWF0IjoxNzYxMzg4NjA2LCJleHAiOjE3NjE0NzUwMDZ9.J1SNbO9aGEmUNa0pte7b_Ts6eAA9ohFtRJz6kqB_YYY
+}
+
+body:json {
+  {
+    "agentWalletId": "68fcb1ae7967b5f6d33837bf",
+    "amount": 50000
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

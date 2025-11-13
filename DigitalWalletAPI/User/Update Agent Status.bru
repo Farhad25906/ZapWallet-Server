@@ -1,0 +1,26 @@
+meta {
+  name: Update Agent Status
+  type: http
+  seq: 5
+}
+
+patch {
+  url: http://localhost:5000/api/v1/user/agent-approve/68f9e3e559db909dab2db89d
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGZiZDIwZDcxNjFjNTA2Mjg1MTY1NjkiLCJwaG9uZSI6IjAxNzEyMzQ1Njc4Iiwicm9sZSI6InN1cGVyX2FkbWluIiwiaWF0IjoxNzYxMzM3ODk3LCJleHAiOjE3NjE0MjQyOTd9.p2vYovmhGaXm6Tf-ZLeuMWB-BsRBFGEXg89yZcWkpFs
+}
+
+body:json {
+  {
+    "approvalStatus": "approved"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

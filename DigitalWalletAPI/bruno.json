@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "DigitalWalletAPI",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
