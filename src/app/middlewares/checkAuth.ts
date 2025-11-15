@@ -14,7 +14,7 @@ export const checkAuth =
       // console.log(req.body);
       
 
-      const accessToken = req.headers.authorization || req.cookies.accessToken;
+      const accessToken = req.headers.authorization || req.cookies.accessToken
       // console.log(accessToken);
       
 

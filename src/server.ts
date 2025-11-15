@@ -23,11 +23,10 @@ const startServer = async () => {
 };
 
 (async () => {
-      await startServer()
-    await connectRedis()
-    await seedSuperAdmin()
-
-})()
+  await startServer();
+  await connectRedis();
+  await seedSuperAdmin();
+})();
 
 process.on("SIGTERM", () => {
   console.log("SIGTERM signal recieved... Server shutting down..");

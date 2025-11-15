@@ -63,7 +63,6 @@ const updateUser = async (
     }
   }
   console.log(payload.role);
-  
 
   if (payload.role) {
     if (decodedToken.role === Role.USER || decodedToken.role === Role.AGENT) {
@@ -130,6 +129,27 @@ const getSingleUser = async (id: string) => {
   };
 };
 
+const getEmail = async (phone: string) => {
+  const user = await User.findOne({ phone });
+
+  if (!user) {
+    throw new AppError(
+      httpStatus.NOT_FOUND,
+      "User not found with this phone number"
+    );
+  }
+
+  if (!user.email) {
+    throw new AppError(httpStatus.NOT_FOUND, "No email found for this user");
+  }
+
+  return {
+    data: {
+      email: user.email,
+    },
+  };
+};
+
 const getMe = async (userId: string) => {
   const user = await User.findById(userId).select("-pin");
 
@@ -192,7 +212,6 @@ const changeStatus = async (
   return newUpdatedUser;
 };
 
-
 const getAllAgentRequest = async () => {
   const agents = await User.find({
     role: Role.AGENT,
@@ -223,4 +242,5 @@ export const UserServices = {
   approveAgent,
   getAllAgentRequest,
   changeStatus,
+  getEmail,
 };

@@ -221,7 +221,7 @@ const withdrawAgentToAdmin = async (
       );
     }
 
-    const updatedAgentWallet = await Wallet.balanceAvailablity(
+    const updatedAgentWallet = await Wallet.balanceAvailability(
       amount,
       agentWallet._id.toString(),
       session
@@ -355,7 +355,7 @@ const sendMoneyUserToUser = async (
 
     // Check and update sender balance (deduct amount + fee)
     const totalDeduction = amount; // Full amount including fee
-    const updatedSenderWallet = await Wallet.balanceAvailablity(
+    const updatedSenderWallet = await Wallet.balanceAvailability(
       totalDeduction,
       senderWallet._id.toString(),
       session
@@ -506,7 +506,7 @@ const cashInAgentToUser = async (
       );
     }
     // Check and update agent balance
-    const updatedAgentWallet = await Wallet.balanceAvailablity(
+    const updatedAgentWallet = await Wallet.balanceAvailability(
       amount,
       agentWallet._id.toString(),
       session
@@ -639,7 +639,7 @@ const cashOutUserToAgent = async (
     }
 
     // Check and update user balance (deduct full amount including commission)
-    const updatedUserWallet = await Wallet.balanceAvailablity(
+    const updatedUserWallet = await Wallet.balanceAvailability(
       amount, // Deduct full amount including commission
       userWallet._id.toString(),
       session

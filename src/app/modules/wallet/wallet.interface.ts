@@ -7,6 +7,7 @@ export enum WALLET_STATUS {
 }
 
 export interface IWallet {
+   _id?: Types.ObjectId;
   user: Types.ObjectId;
   balance: number;
   currency?: string;
@@ -16,7 +17,7 @@ export interface IWallet {
 
 // Define the static methods interface
 export interface WalletModel extends Model<IWallet> {
-  balanceAvailablity(
+  balanceAvailability(
     requestedBalance: number,
     senderWallet: string,
     session: ClientSession

@@ -9,13 +9,16 @@ const router = Router();
 
 router.post("/register", UserControllers.createUser);
 
-// Specific routes should come BEFORE parameterized routes
 router.get("/myInfo", checkAuth(...Object.values(Role)), UserControllers.getMe);
+
 router.get(
   "/pending-agents",
   checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
   UserControllers.getAllAgentRequest
 );
+
+
+
 router.get(
   "/all-users",
   checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
@@ -27,6 +30,7 @@ router.get(
   UserControllers.getAllAgents
 );
 
+router.get("/:phone", UserControllers.getEmail);
 
 router.get(
   "/:id",

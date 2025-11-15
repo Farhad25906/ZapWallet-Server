@@ -7,7 +7,8 @@ import { IsActive, IUser } from "../user/user.interface";
 import { User } from "../user/user.model";
 import { envVariables } from "../../config/env";
 import { createNewAccessTokenWithRefreshToken } from "../../utils/userTokens";
-import { JwtPayload } from "jsonwebtoken";
+import  { JwtPayload } from "jsonwebtoken";
+
 
 const credentialsLogin = async (payload: Partial<IUser>) => {
   const { phone, pin } = payload;
@@ -97,6 +98,8 @@ const resetPin = async (oldPin: string, newPin: string, decodedToken: JwtPayload
 }
 
 
+
+
 const getNewAccessToken = async (refreshToken: string) => {
   const newAccessToken = await createNewAccessTokenWithRefreshToken(
     refreshToken
@@ -109,5 +112,5 @@ const getNewAccessToken = async (refreshToken: string) => {
 export const AuthServices = {
   credentialsLogin,
   getNewAccessToken,
-  resetPin
+  resetPin,
 };

@@ -4,9 +4,10 @@ import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import { WalletService } from "./wallet.service";
 import AppError from "../../errorHelpers/AppError";
+import { JwtPayload } from "jsonwebtoken";
 
 const getMyWallet = catchAsync(async (req: Request, res: Response) => {
-  const decodedToken = req.user;
+  const decodedToken = req.user as JwtPayload;
 
   const data = await WalletService.getMyWallet(decodedToken.userId);
 
@@ -73,7 +74,8 @@ const updateWalletStatus = catchAsync(async (req: Request, res: Response) => {
 // 1. Add Money → Admin → Agent
 const addMoneyToAgent = catchAsync(async (req: Request, res: Response) => {
   const { agentWalletNumber, amount } = req.body;
-  const adminId = req.user.userId;
+  const verifiedToken = req.user as JwtPayload;
+  const adminId = verifiedToken.userId;
 
   if (!agentWalletNumber || !amount || amount <= 0) {
     throw new AppError(
@@ -99,7 +101,8 @@ const addMoneyToAgent = catchAsync(async (req: Request, res: Response) => {
 // 2. Withdraw → Agent → Admin
 const withdrawToAdmin = catchAsync(async (req: Request, res: Response) => {
   const { amount, adminWalletNumber } = req.body;
-  const agentId = req.user.userId;
+  const verifiedToken = req.user as JwtPayload;
+  const agentId = verifiedToken.userId;
 
   if (!amount || amount <= 0) {
     throw new AppError(
@@ -125,7 +128,7 @@ const withdrawToAdmin = catchAsync(async (req: Request, res: Response) => {
 // 3. Send Money → User → User
 const sendMoney = catchAsync(async (req: Request, res: Response) => {
   const { amount, toWalletNumber } = req.body;
-  const decodedToken = req.user;
+  const decodedToken = req.user as JwtPayload;
 
   if (!amount || !toWalletNumber || amount <= 0) {
     throw new AppError(
@@ -150,9 +153,8 @@ const sendMoney = catchAsync(async (req: Request, res: Response) => {
 // 4. Cash In → Agent → User
 const cashIn = catchAsync(async (req: Request, res: Response) => {
   const { amount, toWalletNumber } = req.body;
-  const decodedToken = req.user;
-  console.log(amount,toWalletNumber);
-  
+  const decodedToken = req.user as JwtPayload;
+  // console.log(amount,toWalletNumber);
 
   if (!amount || !toWalletNumber || amount <= 0) {
     throw new AppError(
@@ -177,7 +179,7 @@ const cashIn = catchAsync(async (req: Request, res: Response) => {
 // 5. Cash Out → User → Agent
 const cashOut = catchAsync(async (req: Request, res: Response) => {
   const { amount, agentWalletNumber } = req.body;
-  const decodedToken = req.user;
+  const decodedToken = req.user as JwtPayload;
 
   if (!amount || !agentWalletNumber || amount <= 0) {
     throw new AppError(

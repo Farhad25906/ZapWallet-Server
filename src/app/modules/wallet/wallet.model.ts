@@ -1,5 +1,5 @@
 import mongoose, { model, Schema } from "mongoose";
-import { IWallet, WALLET_STATUS } from "./wallet.interface";
+import { IWallet, WALLET_STATUS, WalletModel } from "./wallet.interface";
 import AppError from "../../errorHelpers/AppError";
 import { StatusCodes } from "http-status-codes";
 
@@ -48,7 +48,7 @@ walletSchema.pre("save", function (next) {
 
 //checking balance availability
 walletSchema.static(
-  "balanceAvailablity",
+  "balanceAvailability",
   async function (requestedBalance: number, senderWallet: string, session: mongoose.ClientSession) {
     
   
@@ -80,4 +80,4 @@ walletSchema.static(
   }
 );
 
-export const Wallet = model<IWallet>("Wallet", walletSchema);
+export const Wallet = model<IWallet, WalletModel>("Wallet", walletSchema);

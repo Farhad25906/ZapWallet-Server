@@ -116,6 +116,21 @@ const getSingleUser = catchAsync(
   }
 );
 
+
+
+const getEmail = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const phone = req.params.phone;
+    const result = await UserServices.getEmail(phone);
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.CREATED,
+      message: "Email Retrieved Successfully",
+      data: result.data,
+    });
+  }
+);
+
 const approveAgent = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.agentId;
@@ -153,6 +168,7 @@ export const UserControllers = {
   getAllAgents,
   getSingleUser,
   getMe,
+  getEmail,
   approveAgent,
   getAllAgentRequest,
   changeStatus
