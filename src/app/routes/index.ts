@@ -5,6 +5,7 @@ import { OtpRoutes } from "../modules/otp/otp.route";
 import { WalletRoutes } from "../modules/wallet/wallet.route";
 import { TransactionRoutes } from "../modules/transaction/transaction.route";
 import { CommissionRoutes } from "../modules/commission/commission.route";
+import { AIRoutes } from "../modules/ai/ai.route";
 
 export const router = Router();
 
@@ -32,6 +33,10 @@ const moduleRoutes = [
   {
     path: "/commission",
     route: CommissionRoutes,
+  },
+  {
+    path: "/ai",
+    route: AIRoutes,
   },
 ];
 
