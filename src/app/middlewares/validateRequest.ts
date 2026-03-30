@@ -18,7 +18,7 @@ export const validateRequest = (zodSchema: ZodType) => {
 
             // Validate against schema
             // If schema has body/query/params structure, validate all
-            // Otherwise, just validate body
+            // Otherwise, just validate bodynpm ru
             const dataToValidate =
                 "body" in (zodSchema as any)._def || "query" in (zodSchema as any)._def
                     ? {
